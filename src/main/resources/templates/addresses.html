@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Addresses</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background-color: #5e0d15;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff;
+        }
+        .navbar-nav .nav-item:hover {
+            background-color: #269d6d;
+        }
+        h1 {
+            color: #46350d;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .list-group-item {
+            font-size: 1.2rem;
+            background-color: #ffffff;
+            border: 1px solid #e3e6f0;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        .list-group-item .author, .list-group-item .date {
+            font-size: 0.9rem;
+            color: #1a466e;
+        }
+        .container {
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container mt-5">
+    <h1>Les différentes adresses</h1>
+    <ul class="list-group" th:each="address : ${allAddresses}">
+        <li class="list-group-item">
+            <div th:text="${address.content}"></div>
+            <div class="author">Author: <span th:text="${address.author}"></span></div>
+            <div class="date">Date: <span th:text="${#dates.format(address.creation, 'dd/MM/yyyy')}"></span></div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
